@@ -55,3 +55,69 @@
 html {
     font-size: 62.5%;
 }
+
+body {
+    font-family: "Mulish", sans-serif;
+    color: var(--text);
+    background-color: var(--background);
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.btn {
+    background-color: transparent;
+    border: none;
+    border-radius: 1rem;
+    padding: 0.75rem;
+    transition: all 0.4s;
+}
+
+.btn:hover,
+.btn:active {
+    cursor: pointer;
+    background-color: var(--secondary);
+}
+
+/* HEADER SECTION --------------------------------------------------------- */
+
+.header-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.6rem;
+    padding: 2.4rem 3.6rem 6.4rem 3.6rem;
+}
+
+.library-heading {
+    font-family: "Philosopher", sans-serif;
+    font-size: 5.2rem;
+    font-weight: 700;
+}
+
+.logo {
+    width: 8rem;
+}
+
+/* MAIN SECTION ---------------------------------------------------------- */
+
+main {
+    display: flex;
+    justify-content: center;
+    padding: 2.4rem 3.6rem;
+}
+
+.icon {
+    width: 3.2rem;
+}
+
+/*
+--SPACING SYSTEM (px)
+2 / 4 / 8 / 12 / 16 / 24 / 32 / 48 / 64 / 80 / 96 / 128
+
+--FONT SIZE SYSTEM (px)
+10 / 12 / 14 / 16 / 18 / 20 / 24 / 30 / 36 / 44 / 52 / 62 / 74 / 86 / 98
+*/
