@@ -69,17 +69,19 @@ img {
 }
 
 .btn {
+    font-family: inherit;
+    font-weight: 700;
+    text-transform: uppercase;
     background-color: transparent;
     border: none;
     border-radius: 1rem;
-    padding: 0.75rem;
+    padding: 1rem;
     transition: all 0.4s;
 }
 
 .btn:hover,
 .btn:active {
     cursor: pointer;
-    background-color: var(--secondary);
 }
 
 /* HEADER SECTION --------------------------------------------------------- */
@@ -94,7 +96,7 @@ img {
 
 .library-heading {
     font-family: "Philosopher", sans-serif;
-    font-size: 5.2rem;
+    font-size: 6.2rem;
     font-weight: 700;
 }
 
@@ -106,12 +108,102 @@ img {
 
 main {
     display: flex;
-    justify-content: center;
-    padding: 2.4rem 3.6rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 4.8rem;
+    text-align: center;
+    padding: 2.4rem 5.2rem;
 }
 
-.icon {
-    width: 3.2rem;
+.add-book {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.6rem;
+    font-family: "Philosopher", sans-serif;
+    color: var(--primary);
+    font-size: 1.8rem;
+    padding: 1rem 2rem;
+}
+
+.add-book-icon {
+    width: 3.6rem;
+}
+
+.add-book:hover,
+.add-book:active {
+    background-color: var(--secondary);
+}
+
+.books-container {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30rem, 1fr));
+    gap: 2.4rem;
+}
+
+.book-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.4rem;
+    padding: 1.6rem;
+    border-radius: 1rem;
+    background: linear-gradient(120deg, var(--secondary), var(--accent));
+}
+
+.book-card p {
+    word-break: break-word;
+}
+
+.book-title {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.book-author {
+    font-size: 1.6rem;
+}
+
+.book-pages {
+    font-size: 1.4rem;
+}
+
+.book-buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+}
+
+.book-status {
+    display: flex;
+    color: var(--text);
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    background-color: var(--secondary);
+}
+
+.read-status-icon {
+    width: 2.4rem;
+}
+
+.remove-book {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    color: var(--primary);
+    background-color: var(--secondary);
+}
+
+.remove-book-icon {
+    width: 2.4rem;
+}
+
+.remove-book:hover,
+.remove-book:active {
+    background-color: var(--background);
 }
 
 /*
