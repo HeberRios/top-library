@@ -1,0 +1,57 @@
+/* CSS RESET -------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --text: #fef1d8;
+    --background: #0e0326;
+    --primary: #ffcf00;
+    --secondary: #331a56;
+    --accent: #ffe57f;
+}
+
+/* FONT FACES ------------------------------------------------------------- */
+
+/* philosopher-regular - latin */
+@font-face {
+    font-display: swap;
+    font-family: "Philosopher";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/philosopher-v19-latin-regular.woff2") format("woff2");
+}
+
+/* philosopher-700 - latin */
+@font-face {
+    font-display: swap;
+    font-family: "Philosopher";
+    font-style: normal;
+    font-weight: 700;
+    src: url("../fonts/philosopher-v19-latin-700.woff2") format("woff2");
+}
+
+/* mulish-regular - latin */
+@font-face {
+    font-display: swap;
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: 400;
+    src: url("../fonts/mulish-v12-latin-regular.woff2") format("woff2");
+}
+
+/* mulish-700 - latin */
+@font-face {
+    font-display: swap;
+    font-family: "Mulish";
+    font-style: normal;
+    font-weight: 700;
+    src: url("../fonts/mulish-v12-latin-700.woff2") format("woff2");
+}
+
+/* GENERAL STYLING ------------------------------------------------------- */
+html {
+    font-size: 62.5%;
+}
