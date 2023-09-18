@@ -10,6 +10,8 @@
     --background: #0e0326;
     --primary: #ffcf00;
     --secondary: #331a56;
+    --secondary-brighter: #452473;
+    --secondary-transparent: #331a565a;
     --accent: #ffe57f;
 }
 
@@ -149,7 +151,8 @@ main {
     gap: 1.4rem;
     padding: 1.6rem;
     border-radius: 1rem;
-    background: linear-gradient(120deg, var(--secondary), var(--accent));
+    background-color: var(--secondary-transparent);
+    box-shadow: 0 0 0 0.2rem var(--accent);
 }
 
 .book-card p {
@@ -184,6 +187,11 @@ main {
     background-color: var(--secondary);
 }
 
+.book-status:hover,
+.book-status:active {
+    background-color: var(--secondary-brighter);
+}
+
 .read-status-icon {
     width: 2.4rem;
 }
@@ -204,6 +212,7 @@ main {
 .remove-book:hover,
 .remove-book:active {
     background-color: var(--background);
+    box-shadow: 0 0 0 0.2rem var(--accent);
 }
 
 /*
