@@ -187,11 +187,18 @@ main {
 
 .book-status {
     display: flex;
-    color: var(--text);
     justify-content: center;
     align-items: center;
     gap: 0.75rem;
     background-color: var(--secondary);
+}
+
+.not-read {
+    color: var(--text);
+}
+
+.read {
+    color: var(--primary);
 }
 
 .book-status:hover,
