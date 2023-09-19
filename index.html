@@ -13,7 +13,7 @@
             <h1 class="library-heading">Library</h1>
         </header>
         <main class="main-section">
-            <button class="btn add-book">
+            <button id="add-book" class="btn add-book">
                 <img
                     src="assets/icons/book-plus.svg"
                     alt="add a book icon"
@@ -77,22 +77,25 @@
             </section>
         </main>
 
+        <div id="overlay" class="overlay hidden"></div>
         <form id="add-book-form" action="" class="add-book-form hidden">
-            <label for="bool-title">Title</label>
-            <input type="text" name="" id="book-title" />
+            <label for="book-title">Title</label>
+            <input type="text" name="book-title" id="book-title" />
 
             <label for="book-author">Author </label>
-            <input type="text" name="" id="book-author" />
+            <input type="text" name="book-author" id="book-author" />
 
             <label for="book-pages">Pages </label>
-            <input type="number" name="" id="book-pages" />
+            <input type="number" name="book-pages" id="book-pages" />
 
             <div class="read-status-container">
                 <label for="book-read-status">Have you read it ? </label>
-                <input type="checkbox" name="" id="book-read-status" />
+                <input type="checkbox" name="book-read-status" id="book-read-status" />
             </div>
 
-            <button id="create-book-card-btn" class="btn create-book-card-btn">add book</button>
+            <button id="create-book-card-btn" class="btn create-book-card-btn">
+                add book
+            </button>
         </form>
     </body>
 </html>
