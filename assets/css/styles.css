@@ -5,14 +5,18 @@
     box-sizing: border-box;
 }
 
+/* CUSTOM PROPERTIES ----------------------------------------------------- */
 :root {
     --text: #fef1d8;
     --background: #0e0326;
     --primary: #ffcf00;
     --secondary: #331a56;
     --secondary-brighter: #452473;
-    --secondary-transparent: #331a565a;
+    --secondary-transparent: #331a5662;
     --accent: #ffe57f;
+
+    --base-border-radius: 1rem;
+    --lower-border-radius: 0.25rem;
 }
 
 /* FONT FACES ------------------------------------------------------------- */
@@ -59,6 +63,7 @@ html {
 }
 
 body {
+    position: relative;
     font-family: "Mulish", sans-serif;
     color: var(--text);
     background-color: var(--background);
@@ -202,7 +207,7 @@ main {
     justify-content: center;
     gap: 1rem;
     color: var(--primary);
-    background-color: var(--secondary);
+    background-color: var(--background);
 }
 
 .remove-book-icon {
@@ -211,8 +216,78 @@ main {
 
 .remove-book:hover,
 .remove-book:active {
-    background-color: var(--background);
     box-shadow: 0 0 0 0.2rem var(--accent);
+}
+
+/* ADD BOOK FORM (MODAL WINDOW) ------------------------------------------ */
+
+.add-book-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    display: flex;
+    flex-direction: column;
+    padding: 3.2rem;
+    border: 0.2rem solid var(--accent);
+    border-radius: var(--base-border-radius);
+    background: linear-gradient(
+        135deg,
+        var(--secondary),
+        var(--secondary-transparent)
+    );
+}
+
+label {
+    font-family: "Philosopher", sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+}
+
+input {
+    font-family: inherit;
+    font-size: 1.4rem;
+    color: var(--background);
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: var(--lower-border-radius);
+    background-color: var(--text);
+    margin-bottom: 1.6rem;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus {
+    outline: 0.3rem solid var(--primary);
+}
+
+.read-status-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.read-status-container label,
+.read-status-container input {
+    margin-bottom: 0;
+}
+
+.create-book-card-btn {
+    font-family: "Philosopher", sans-serif;
+    font-size: 1.6rem;
+    background-color: var(--primary);
+    margin-top: 2.4rem;
+}
+
+.create-book-card-btn:hover,
+.create-book-card-btn:active {
+    color: var(--primary);
+    background-color: var(--background);
+}
+
+.hidden {
+    display: none;
 }
 
 /*
