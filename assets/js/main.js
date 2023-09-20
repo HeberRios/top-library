@@ -30,6 +30,12 @@ const booksCardsContainer = document.querySelector(".books-container");
 const addBookBtn = document.getElementById("add-book");
 const addBookForm = document.getElementById("add-book-form");
 const overlay = document.getElementById("overlay");
+const bookForm = document.getElementById("add-book-form");
+const bookTitle = document.getElementById("book-title");
+const bookAuthor = document.getElementById("book-author");
+const bookPages = document.getElementById("book-pages");
+const bookStatusCheckBox = document.getElementById("book-read-status");
+const createBookBtn = document.getElementById("create-book-card-btn");
 
 // FUNCTIONS -------------------------------------------------------------
 function toggleBookForm() {
@@ -39,7 +45,6 @@ function toggleBookForm() {
 
 function createNewBookCard(newBook) {
     //VARIABLES
-    let readStatus = false;
     const readStatusMessage = "read";
     const notReadStatusMessage = "not read";
 
@@ -68,7 +73,7 @@ function createNewBookCard(newBook) {
     // ADDING THE CONTENT
     bookTitle.textContent = newBook.title;
     bookAuthor.textContent = newBook.author;
-    bookPages.textContent = newBook.numberOfPages;
+    bookPages.textContent = newBook.numberOfPages + " pages";
 
     //CHECKING THE READING STATUS
     if (newBook.readStatus) {
@@ -102,6 +107,22 @@ function createNewBookCard(newBook) {
     booksCardsContainer.appendChild(bookCard);
 }
 
+function createNewBookObject() {
+    const title = bookTitle.value;
+    const author = bookAuthor.value;
+    const pages = bookPages.value;
+    const readStatus = bookStatusCheckBox.checked;
+    const newBook = new Book(title, author, pages, readStatus);
+    return newBook;
+}
+
+function clearFormInputs() {
+    bookTitle.value = "";
+    bookAuthor.value = "";
+    bookPages.value = null;
+    bookStatusCheckBox.checked = false;
+}
+
 // EVENT LISTENERS -------------------------------------------------------
 
 // TOGGLE BOOK FORM
@@ -116,3 +137,12 @@ document.addEventListener("keydown", function (e) {
 
 createNewBookCard(newBook);
 createNewBookCard(newBook2);
+
+// FORM SUBMIT
+
+bookForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    createNewBookCard(createNewBookObject());
+    clearFormInputs();
+    toggleBookForm();
+});
