@@ -15,15 +15,23 @@ class Book {
 }
 
 const newBook = new Book("The DOOM Slayer", "Samur", 666, false);
+const newBook3 = new Book("The DOOM Slayer", "Samur", 666, false);
+const newBook4 = new Book("The DOOM Slayer", "Samur", 666, false);
+const newBook5 = new Book("The DOOM Slayer", "Samur", 666, false);
 const newBook2 = new Book(
     "The DOOM Slayesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssr",
     "Samur",
     666,
     false
 );
-booksArray.push(newBook);
-console.log(booksArray);
-console.log(newBook.title);
+
+// booksArray.push(newBook);
+// booksArray.push(newBook2);
+// booksArray.push(newBook3);
+// booksArray.push(newBook4);
+// booksArray.push(newBook5);
+// console.log(booksArray);
+// console.log(newBook.title);
 
 // ELEMENTS --------------------------------------------------------------
 const booksCardsContainer = document.querySelector(".books-container");
@@ -43,7 +51,7 @@ function toggleBookForm() {
     overlay.classList.toggle("hidden");
 }
 
-function createNewBookCard(newBook) {
+function createNewBookCard(newBook, bookIndex) {
     //VARIABLES
     const readStatusMessage = "read";
     const notReadStatusMessage = "not read";
@@ -69,6 +77,9 @@ function createNewBookCard(newBook) {
     readStatusIcon.classList.add("read-status-icon");
     removeBookBtn.classList.add("btn", "remove-book");
     removeBookIcon.classList.add("remove-book-icon");
+
+    // ADDING ATTRIBUTES
+    removeBookBtn.dataset.position = `${bookIndex}`;
 
     // ADDING THE CONTENT
     bookTitle.textContent = newBook.title;
@@ -110,9 +121,10 @@ function createNewBookCard(newBook) {
 function createNewBookObject() {
     const title = bookTitle.value;
     const author = bookAuthor.value;
-    const pages = bookPages.value;
+    const pages = +bookPages.value;
     const readStatus = bookStatusCheckBox.checked;
     const newBook = new Book(title, author, pages, readStatus);
+    booksArray.push(newBook);
     return newBook;
 }
 
@@ -121,6 +133,33 @@ function clearFormInputs() {
     bookAuthor.value = "";
     bookPages.value = null;
     bookStatusCheckBox.checked = false;
+}
+
+function clearBooksContainer() {
+    booksCardsContainer.replaceChildren();
+}
+
+function displayBookArray() {
+    clearBooksContainer();
+    booksArray.forEach((book, bookIndex) => {
+        createNewBookCard(book, bookIndex);
+    });
+    addRemoveBookEvent();
+}
+
+function addRemoveBookEvent() {
+    const removeBtns = document.querySelectorAll(".remove-book");
+
+    removeBtns.forEach((removeBtn) => {
+        removeBtn.addEventListener("click", function (removeBtn) {
+            booksArray.splice(
+                +removeBtn.target.getAttribute("data-position"),
+                1
+            );
+            console.log(booksArray);
+            displayBookArray();
+        });
+    });
 }
 
 // EVENT LISTENERS -------------------------------------------------------
@@ -135,14 +174,12 @@ document.addEventListener("keydown", function (e) {
     }
 });
 
-createNewBookCard(newBook);
-createNewBookCard(newBook2);
-
 // FORM SUBMIT
 
 bookForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    createNewBookCard(createNewBookObject());
+    createNewBookObject();
+    displayBookArray();
     clearFormInputs();
     toggleBookForm();
 });
