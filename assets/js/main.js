@@ -12,26 +12,15 @@ class Book {
         this.numberOfPages = numberOfPages;
         this.readStatus = readStatus;
     }
+
+    changeReadStatus() {
+        if (this.readStatus) {
+            this.readStatus = false;
+        } else {
+            this.readStatus = true;
+        }
+    }
 }
-
-const newBook = new Book("The DOOM Slayer", "Samur", 666, false);
-const newBook3 = new Book("The DOOM Slayer", "Samur", 666, false);
-const newBook4 = new Book("The DOOM Slayer", "Samur", 666, false);
-const newBook5 = new Book("The DOOM Slayer", "Samur", 666, false);
-const newBook2 = new Book(
-    "The DOOM Slayesssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssr",
-    "Samur",
-    666,
-    false
-);
-
-// booksArray.push(newBook);
-// booksArray.push(newBook2);
-// booksArray.push(newBook3);
-// booksArray.push(newBook4);
-// booksArray.push(newBook5);
-// console.log(booksArray);
-// console.log(newBook.title);
 
 // ELEMENTS --------------------------------------------------------------
 const booksCardsContainer = document.querySelector(".books-container");
@@ -63,6 +52,7 @@ function createNewBookCard(newBook, bookIndex) {
     const bookPages = document.createElement("p");
     const bookButtonsContainer = document.createElement("div");
     const bookStatusBtn = document.createElement("button");
+    const bookStatusText = document.createElement("span");
     const readStatusIcon = document.createElement("img");
     const removeBookBtn = document.createElement("button");
     const removeBookIcon = document.createElement("img");
@@ -79,6 +69,7 @@ function createNewBookCard(newBook, bookIndex) {
     removeBookIcon.classList.add("remove-book-icon");
 
     // ADDING ATTRIBUTES
+    bookStatusBtn.dataset.position = `${bookIndex}`;
     removeBookBtn.dataset.position = `${bookIndex}`;
 
     // ADDING THE CONTENT
@@ -89,10 +80,10 @@ function createNewBookCard(newBook, bookIndex) {
     //CHECKING THE READING STATUS
     if (newBook.readStatus) {
         bookStatusBtn.classList.add("read");
-        bookStatusBtn.textContent = readStatusMessage;
+        bookStatusText.textContent = readStatusMessage;
     } else {
         bookStatusBtn.classList.add("not-read");
-        bookStatusBtn.textContent = notReadStatusMessage;
+        bookStatusText.textContent = notReadStatusMessage;
     }
 
     removeBookBtn.textContent = "remove";
@@ -113,6 +104,7 @@ function createNewBookCard(newBook, bookIndex) {
     bookCard.appendChild(bookButtonsContainer);
     bookButtonsContainer.appendChild(bookStatusBtn);
     bookButtonsContainer.appendChild(removeBookBtn);
+    bookStatusBtn.appendChild(bookStatusText);
     bookStatusBtn.appendChild(readStatusIcon);
     removeBookBtn.appendChild(removeBookIcon);
     booksCardsContainer.appendChild(bookCard);
@@ -144,6 +136,7 @@ function displayBookArray() {
     booksArray.forEach((book, bookIndex) => {
         createNewBookCard(book, bookIndex);
     });
+    addChangeReadStatusEvent();
     addRemoveBookEvent();
 }
 
@@ -151,13 +144,35 @@ function addRemoveBookEvent() {
     const removeBtns = document.querySelectorAll(".remove-book");
 
     removeBtns.forEach((removeBtn) => {
-        removeBtn.addEventListener("click", function (removeBtn) {
-            booksArray.splice(
-                +removeBtn.target.getAttribute("data-position"),
-                1
-            );
-            console.log(booksArray);
+        removeBtn.addEventListener("click", () => {
+            booksArray.splice(+removeBtn.getAttribute("data-position"), 1);
             displayBookArray();
+        });
+    });
+}
+
+function changeReadStatusClass(btn) {
+    if (btn.classList.contains("not-read")) {
+        btn.classList.remove("not-read");
+        btn.classList.add("read");
+        btn.firstElementChild.textContent = "read";
+        btn.lastElementChild.src = "assets/icons/read.svg";
+    } else if (btn.classList.contains("read")) {
+        btn.classList.remove("read");
+        btn.classList.add("not-read");
+        btn.firstElementChild.textContent = "not read";
+        btn.lastElementChild.src = "assets/icons/not-read.svg";
+    }
+}
+
+function addChangeReadStatusEvent() {
+    const bookStatusBtns = document.querySelectorAll(".book-status");
+    bookStatusBtns.forEach((bookStatusBtn) => {
+        bookStatusBtn.addEventListener("click", () => {
+            booksArray[
+                +bookStatusBtn.getAttribute("data-position")
+            ].changeReadStatus();
+            changeReadStatusClass(bookStatusBtn);
         });
     });
 }
